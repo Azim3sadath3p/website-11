@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doctor Appointment</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f8fb;
+            color: #222;
+        }
+
+        header {
+            background: #087f8c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        nav {
+            background: #05636d;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero h2 {
+            color: #087f8c;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .doctors {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .doctor {
+            background: white;
+            width: 260px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #ccc;
+        }
+
+        .doctor img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .doctor h3 {
+            color: #087f8c;
+            margin-bottom: 8px;
+        }
+
+        .doctor button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            background: #087f8c;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .doctor button:hover {
+            background: #05636d;
+        }
+
+        .appointment {
+            background: white;
+            margin-top: 35px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #ccc;
+        }
+
+        .appointment h2 {
+            color: #087f8c;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+        }
+
+        textarea {
+            height: 80px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 13px;
+            background: #087f8c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #05636d;
+        }
+
+        #confirmation {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #d9f5df;
+            color: #176b2c;
+            border-radius: 8px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: #05636d;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>MedCare Clinic</h1>
+    <p>Your Health, Our Priority</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#doctors">Doctors</a>
+    <a href="#appointment">Book Appointment</a>
+</nav>
+
+<section class="hero" id="home">
+    <h2>Book Your Doctor Appointment</h2>
+    <p>Choose your doctor and select a convenient time.</p>
+</section>
+
+<div class="container">
+
+    <section id="doctors">
+        <h2 style="text-align:center; margin-bottom:20px;">
+            Our Doctors
+        </h2>
+
+        <div class="doctors">
+
+            <div class="doctor">
+                <img src="https://via.placeholder.com/100" alt="Doctor">
+                <h3>Dr. Anil Kumar</h3>
+                <p>General Physician</p>
+                <p>10 Years Experience</p>
+                <button onclick="selectDoctor('Dr. Anil Kumar')">
+                    Book Appointment
+                </button>
+            </div>
+
+            <div class="doctor">
+                <img src="https://via.placeholder.com/100" alt="Doctor">
+                <h3>Dr. Sarah Thomas</h3>
+                <p>Cardiologist</p>
+                <p>12 Years Experience</p>
+                <button onclick="selectDoctor('Dr. Sarah Thomas')">
+                    Book Appointment
+                </button>
+            </div>
+
+            <div class="doctor">
+                <img src="https://via.placeholder.com/100" alt="Doctor">
+                <h3>Dr. Rahul Menon</h3>
+                <p>Dermatologist</p>
+                <p>8 Years Experience</p>
+                <button onclick="selectDoctor('Dr. Rahul Menon')">
+                    Book Appointment
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="appointment" id="appointment">
+
+        <h2>Book Appointment</h2>
+
+        <form id="appointmentForm">
+
+            <label>Doctor</label>
+            <select id="doctor" required>
+                <option value="">Select Doctor</option>
+                <option>Dr. Anil Kumar</option>
+                <option>Dr. Sarah Thomas</option>
+                <option>Dr. Rahul Menon</option>
+            </select>
+
+            <label>Patient Name</label>
+            <input type="text" id="name"
+                   placeholder="Enter patient name" required>
+
+            <label>Phone Number</label>
+            <input type="tel" id="phone"
+                   placeholder="Enter phone number" required>
+
+            <label>Age</label>
+            <input type="number" id="age"
+                   placeholder="Enter age" required>
+
+            <label>Appointment Date</label>
+            <input type="date" id="date" required>
+
+            <label>Appointment Time</label>
+            <select id="time" required>
+                <option value="">Select Time</option>
+                <option>09:00 AM</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>02:00 PM</option>
+                <option>03:00 PM</option>
+                <option>04:00 PM</option>
+                <option>05:00 PM</option>
+            </select>
+
+            <label>Reason for Visit</label>
+            <textarea id="reason"
+                      placeholder="Enter reason for appointment"></textarea>
+
+            <button type="submit" class="submit-btn">
+                Confirm Appointment
+            </button>
+
+        </form>
+
+        <div id="confirmation"></div>
+
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 MedCare Clinic | All Rights Reserved</p>
+</footer>
+
+
+<script>
+
+    // Select doctor from doctor card
+    function selectDoctor(doctorName) {
+
+        document.getElementById("doctor").value = doctorName;
+
+        document.getElementById("appointment")
+            .scrollIntoView({ behavior: "smooth" });
+    }
+
+
+    // Appointment form
+    document.getElementById("appointmentForm")
+        .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        let doctor = document.getElementById("doctor").value;
+        let name = document.getElementById("name").value;
+        let date = document.getElementById("date").value;
+        let time = document.getElementById("time").value;
+
+        document.getElementById("confirmation").style.display = "block";
+
+        document.getElementById("confirmation").innerHTML =
+            "<h3>Appointment Confirmed!</h3>" +
+            "<p><b>Patient:</b> " + name + "</p>" +
+            "<p><b>Doctor:</b> " + doctor + "</p>" +
+            "<p><b>Date:</b> " + date + "</p>" +
+            "<p><b>Time:</b> " + time + "</p>";
+
+        document.getElementById("appointmentForm").reset();
+
+    });
+
+</script>
+
+</body>
+</html>
